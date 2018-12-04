@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <div class="loginbox">
+      <h2 class="title" style="margin-bottom:20px;">用户登录</h2>
       <el-form :model="loginForm" status-icon :rules="loginRules" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
         <el-form-item label="账号" prop="account">
           <el-input type="account" v-model="loginForm.account" autocomplete="off"></el-input>
@@ -9,14 +10,15 @@
           <el-input type="password" v-model="loginForm.pass" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-          <el-button @click="resetForm('ruleForm2')">重置</el-button>
+          <el-button type="primary" @click="submitForm('loginForm')">提交</el-button>
+          <el-button @click="resetForm('loginForm')">重置</el-button>
         </el-form-item>
       </el-form>
     </div>
   </div>
 </template>
 <script>
+import { apiGetBaiDu } from '@/http/index.js'
 export default {
   data () {
     return {
@@ -32,6 +34,13 @@ export default {
           {require: true, messgae: '输入密码不能为空', trigger: blur}
         ]
       }
+    }
+  },
+  methods: {
+    submitForm () {
+      apiGetBaiDu().then(res => {
+        console.log(111)
+      })
     }
   }
 }
